@@ -1,0 +1,101 @@
+.container {
+    width: 1140px;
+    margin: 0 auto;
+}
+
+.Header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+.h1{
+    display: flex;
+    align-items: center;
+}
+.Left {
+    display: flex;
+    width: 65%;
+    justify-content: space-between;
+}
+
+.imgStar {
+    width: 18px;
+    height: 18px;
+}
+
+.Right {
+    width: 20%;
+    display: flex;
+    justify-content: space-around;
+}
+
+.MediumBlackHeaderP {
+    color: rgb(0, 0, 0);
+    font-size: 18px;
+    line-height: 1.2;
+    font-weight: 600;
+}
+
+.MediumBlackHeaderP div {
+    display: flex;
+    align-items: center;
+    column-gap: 5px;
+}
+
+.MediumGreyHeader {
+    font-weight: 200;
+    color: grey;
+}
+
+.One a {
+    display: flex;
+    column-gap: 20px;
+}
+
+.Two {
+    display: flex;
+    align-items: center;
+    /* background-color: blue; */
+    /* column-gap: 20px; */
+}
+
+.Three {
+    display: flex;
+    align-items: center;
+    /* background-color: aqua; */
+    /* column-gap: 20px; */
+}
+
+.imgD {
+    width: 100px;
+    height: 100px;
+}
+
+.Btn {
+    display: flex;
+    align-items: center;
+}
+
+.Btn button {
+    border-radius: 20px;
+    border: none;
+    padding: 8px 16px;
+    background-color: rgb(243, 243, 247);    
+}
+
+.Btn button :hover {
+    color: black;
+}
+
+.a_GoInButton {
+    color: rgb(92, 99, 112);
+    font-size: 14px;
+    line-height: 16px;
+    text-align: center;
+    font-weight: 500;
+}

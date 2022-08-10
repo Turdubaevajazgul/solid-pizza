@@ -6,26 +6,65 @@ import {
   Route,
 } from "react-router-dom";
 import HomePage from './pages/HomePage/HomePage';
+import BasketModal from './components/BasketModal/BasketModal';
+import AdminPage from './pages/AdminPage/AdminPage';
+import CreateNewElement from './pages/CreateNewElement/CreateNewElement';
 import { useEffect, useState } from 'react';
 
+const local = JSON.parse(localStorage.getItem("basket"))
 function App() {
   const [pizzas, setPizzas] = useState([])
+  const [potable, setPotable] = useState([])
+  const [basket, setBasket] = useState(local || [])
+  
+
+  console.log(basket)
 
   useEffect(() => {
-    fetch("https://605b21f027f0050017c063b9.mockapi.io/api/v3/pizza")
-      .then((res) => res.json())
-      .then((data) => setPizzas(data))
+    localStorage.setItem("basket", JSON.stringify(basket))
+  }, [basket])
+
+
+  const addToBasket = (pizza) => {
+    const isExist = basket.find((item) => item.id === pizza.id)
+    console.log(isExist)
+    if (!isExist) {
+      setBasket([...basket, pizza])
+    }
+  }
+  const [isLoading, setLoading] = useState(true)
+
+  useEffect(() => {
+    Promise.all([
+      fetch("https://62d0201c1cc14f8c0884e83d.mockapi.io/pizza"),
+      fetch("https://62d0201c1cc14f8c0884e83d.mockapi.io/potable")
+    ]).then((res) => {
+      Promise.all(res.map((item) => item.json()))
+        .then((data => {
+          console.log(data)
+          setLoading(false)
+          setPizzas(data[0])
+          setPotable(data[1])
+        }))
+    })
   }, []);
 
+  if (isLoading) {
+    return <h1>...Loading</h1>
+  }
   return (
     <div className="App">
       <Header />
-      <Navbar />
-      
+      <Navbar basket={basket} />
       <Routes>
-        <Route path='/' element={<HomePage pizzas={pizzas} />} />
+        <Route path="/button" element={<BasketModal />} />
+        <Route path='/' element={<HomePage
+          addToBasket={addToBasket}
+          pizzas={pizzas}
+          potable={potable} />} />
+        <Route path="/admin" element={<AdminPage pizzas={pizzas} />} />
+        <Route path="/create-new-item" element={<CreateNewElement />} />
       </Routes>
-
     </div>
   );
 }

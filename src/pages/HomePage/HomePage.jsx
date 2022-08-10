@@ -1,23 +1,24 @@
 import Slider from "react-slick";
 import PizzaCard from "../../components/pizzaCard/PizzaCard";
+import Potable from "../../components/Potable/Potable";
 import SliderCard from "../../components/sliderCard/SliderCard";
 
 const sliderCards = [
   {
     id: 1,
-    img: "https://img.freepik.com/free-photo/mixed-pizza-with-various-ingridients_140725-3790.jpg",
+    img: "https://eda.ru/img/eda/c620x415/s1.eda.ru/StaticContent/Photos/120131085053/171027192707/p_O.jpg",
   },
   {
     id: 2,
-    img: "https://cdn.loveandlemons.com/wp-content/uploads/2022/01/pizza-topping-ideas.jpg",
+    img: "https://roll-club.kh.ua/wp-content/uploads/2021/06/pizza.jpg",
   },
   {
     id: 3,
-    img: "https://assets.bonappetit.com/photos/5cd32ef32c3537178c3c8f03/6:9/w_1630,h_2445,c_limit/BA-Perfect-Pizza.jpg",
+    img: "https://odessa-life.od.ua/wp-content/uploads/2021/09/monopizza01.jpg",
   },
   {
     id: 4,
-    img: "https://www.acouplecooks.com/wp-content/uploads/2022/04/Greek-Pizza-with-Feta-009-1.jpg",
+    img: "https://vesti.ua/wp-content/uploads/2021/02/822fccd9a214266b046851374d588465.jpg",
   },
   {
     id: 5,
@@ -29,7 +30,7 @@ const sliderCards = [
   },
   {
     id: 7,
-    img: "https://tmbidigitalassetsazure.blob.core.windows.net/rms3-prod/attachments/37/1200x1200/Pizza-from-Scratch_EXPS_FT20_8621_F_0505_1_home.jpg",
+    img: "https://golos.ua/images/2022/02/pytstsa.jpg",
   },
   {
     id: 8,
@@ -37,7 +38,9 @@ const sliderCards = [
   },
 ];
 
-function HomePage(props) {
+
+
+function HomePage({ addToBasket, pizzas, potable }) {
   const settings = {
     dots: false,
     speed: 500,
@@ -54,8 +57,25 @@ function HomePage(props) {
       </Slider>
       <h1 className="title">Пицца</h1>
       <div className="cards_wrapper">
-        {props.pizzas.map((pizza) => (
-          <PizzaCard title={pizza.title} description={pizza.description} price={pizza.price} />
+        {pizzas.map((pizza) => (
+          <PizzaCard 
+            key={pizza.id}
+            id={pizza.id}
+            title={pizza.title}
+            description={pizza.description}
+            price={pizza.price}
+            addToBasket={addToBasket} />
+        ))}
+      </div>
+      <h1 className="title">Напитки</h1>
+      <div className="cards_wrapper">
+        {potable.map((elem) => (
+          <Potable key={elem.id}
+            id={elem.id}
+            img={elem.img}
+            title={elem.title}
+            description={elem.description}
+            price={elem.price} />
         ))}
       </div>
     </div>

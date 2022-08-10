@@ -1,0 +1,226 @@
+.darkBlock {
+  height: 100vh;
+  width: calc(100vw - 430px);
+  background: rgba(0, 0, 0, 0.64);
+  position: fixed;
+  left: 0;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s linear;
+}
+
+.modal {
+  position: fixed;
+  right: -430px;
+  width: 430px;
+  height: 100vh;
+  background: rgb(243, 243, 247);
+  transition: all 0.3s linear;
+}
+
+.darkBlock img {
+  margin-top: 300px;
+  width: 25px;
+  height: 25px;
+  fill: none;
+  margin-left: 990px;
+}
+
+.BtnImg img {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 800px;
+  max-width: 350px;
+  padding: 4px;
+  margin-top: 120px;
+  margin-left: 30px;
+}
+
+.BtnImg h1 {
+  color: rgb(0, 0, 0);
+  font-family: 'Roboto' sans-serif;
+  font-weight: 500;
+  font-size: 18px;
+  text-align: center;
+  line-height: 1.4;
+  margin-top: 10px;
+}
+
+.modal p {
+  margin-top: 20px;
+  color: rgb(0, 0, 0);
+  font-size: 14px;
+  font-weight: 500;
+  text-align: center;
+}
+
+.ButtonSlider {
+  height: 48px;
+  padding: 12px 24px;
+  font-size: 16px;
+  line-height: 24px;
+  outline: none;
+  border: none;
+  border-radius: 9999px;
+  text-align: center;
+  background-color: rgb(255, 105, 0);
+  margin-top: 16px;
+  margin-left: 120px;
+}
+
+.Basket {
+  color: white;
+}
+
+.wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 99;
+  display: flex;
+}
+
+.active>.modal {
+  right: 0;
+}
+
+.active>.darkBlock {
+  opacity: 1;
+  visibility: visible;
+}
+
+
+.header h1 {
+  font-size: 24px;
+  line-height: 28px;
+  font-weight: 500;
+  margin-left: 20px;
+  margin-top: 30px;
+}
+
+.ChoosePiz {
+  height: 25vh;
+  padding: 16px 24px;
+  background: rgb(255, 255, 255);
+  margin-top: 8px;
+}
+
+
+.img {
+  width: 70px;
+  height: 10vh;
+  margin: 5% 0px 0px 5%;
+}
+
+.BasketPrice {
+  display: flex;
+  margin-bottom: 12px;
+  border-bottom: 1px solid rgb(226, 226, 233);
+  padding-bottom: 12px;
+}
+
+.text {
+  display: flex;
+  flex-direction: column;
+  margin-left: 15px;
+  margin-top: 30px;
+}
+
+.BasketPrice h1 {
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 20px;
+  color: rgb(0, 0, 0);
+  margin: 0px 0px 4px;
+}
+
+.BasketPrice span {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 16px;
+  color: rgb(92, 99, 112);
+  margin: 0px;
+  white-space: pre-wrap;
+}
+
+.SliderPrice {
+  display: flex;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 20px;
+  color: rgb(0, 0, 0);
+  margin-bottom: 80px;
+}
+
+.Slider {
+  background-color: rgb(255, 255, 255);
+  box-shadow: rgb(6 5 50 / 10%) 0px -2px 4px;
+  padding-bottom: env(safe-area-inset-bottom);
+  padding: 16px 24px;
+  height: 50vh;
+  margin-top: 100px;
+}
+
+.promo {
+  height: 40px;
+  border-bottom: 1px solid rgb(226, 226, 233);
+  padding-bottom: 12px;
+}
+
+.ChekInfo>.location {
+  border-bottom: 1px solid rgb(226, 226, 233);
+  padding-bottom: 16px;
+  margin-bottom: 16px;
+}
+
+.Sale {
+  display: flex;
+  justify-content: space-between;
+}
+
+.Dodo {
+  display: flex;
+  justify-content: space-between;
+}
+.DodoImg {
+  height: 16px;
+  width: 16px;
+  margin: 0 auto;
+}
+
+.location {
+  display: flex;
+  justify-content: space-between;
+}
+
+.check {
+  display: flex;
+  justify-content: space-between;
+}
+
+.check h1 {
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
+  line-height: 20px;
+  font-weight: 500;
+}
+
+.SliderButton {
+  margin-top: 16px;
+  height: 48px;
+  background-color: rgb(255, 105, 0);
+  color: rgb(255, 255, 255);
+  border-radius: 9999px;
+  text-align: center;
+  border: none;
+  font-weight: 500;
+  font-size: 16px;
+  text-decoration: none;
+  width: 100%;
+}
+
+/* .BasketMap{
+  overflow-y: scroll;
+} */
