@@ -2,7 +2,7 @@ import Slider from "react-slick";
 import PizzaCard from "../../components/pizzaCard/PizzaCard";
 import Potable from "../../components/Potable/Potable";
 import SliderCard from "../../components/sliderCard/SliderCard";
-
+import { useSelector } from "react-redux/es/exports";
 const sliderCards = [
   {
     id: 1,
@@ -40,7 +40,9 @@ const sliderCards = [
 
 
 
-function HomePage({ addToBasket, pizzas, potable }) {
+function HomePage() {
+  const pizzas= useSelector((state)=>state.pizzas.data)
+  const potable=useSelector((state)=>state.potable.data)
   const settings = {
     dots: false,
     speed: 500,
@@ -64,7 +66,7 @@ function HomePage({ addToBasket, pizzas, potable }) {
             title={pizza.title}
             description={pizza.description}
             price={pizza.price}
-            addToBasket={addToBasket} />
+            />
         ))}
       </div>
       <h1 className="title">Напитки</h1>

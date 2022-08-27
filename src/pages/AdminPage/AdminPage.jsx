@@ -1,8 +1,10 @@
 import PizzaCard from "../../components/pizzaCard/PizzaCard";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux/es/exports";
 
-
-function AdminPage({ pizzas }) {
+function AdminPage() {
+const pizzas=useSelector((state)=>state.pizzas.data)
+const potable=useSelector((state)=>state.potable.data)
 
     return (
         <div className="container page">
@@ -13,7 +15,15 @@ function AdminPage({ pizzas }) {
                 {
                     pizzas.map((item) =>
                         <PizzaCard
-                            key={item.id} {...item} isAdmin={true} />)
+                            key={item.id} {...item} isAdmin={true} link="pizza"/>)
+                }
+            </div>
+            <h2 className="title">Напитки</h2>
+            <div className="cards_wrapper">
+                {
+                    potable.map((item) =>
+                        <PizzaCard
+                            key={item.id} {...item} isAdmin={true} link="potable"/>)
                 }
             </div>
         </div>

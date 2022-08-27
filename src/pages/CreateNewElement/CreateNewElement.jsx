@@ -1,21 +1,64 @@
-
-import { useEffect, useState } from 'react';
-import PizzaCard from '../../components/pizzaCard/PizzaCard';
+import css from "./CreateNewElement.module.css"
+import {  useState } from 'react';
+import { useNavigate } from "react-router-dom";
+import Api from "../../api/api";
 
 function CreateNewElement() {
- 
+    const [title, setTitle] = useState("")
+    const [price, setPrice] = useState("")
+    const [img, setImg] = useState("")
+    const [description, setDescription] = useState("")
+    const [status, setStatus] = useState("pizza");
+    const [isSending, setSending] = useState(false);
+
+    const navigate=useNavigate()
+
+    const submit = (e) => {
+        e.preventDefault()
+        setSending(true)
+        const data = {
+            title: title,
+            price: price,
+            img: img
+        }
+        console.log(data)
+        // fetch(base_url + status, {
+        //     method: "POST",
+        //     body: JSON.stringify(data),
+        //     headers: {
+        //         'Content-Type': 'application/json'
+        //     }
+        // })
+        Api.create(status,data)
+            .finally(() => {
+                setSending(false)
+            })
+            .then(() => {
+                navigate("/admin")
+                // TODO: Автоматически должны перенапрвляться на страницу админа
+
+            })
+    }
     return (
         <div className="container page" >
             <h1 className="text-center">Create new Element</h1>
-            <form className='CreatePage'>
-                <input type="text" placeholder="title" />
-                <input type="text" placeholder="price" />
-                <input type="text" placeholder="https://cdn.dodostatic.net/static/Img/Products/c940c5751e6d420e997d86c26a8ba16f_366x366.jpeg" />
-                <textarea placeholder="description" ></textarea>
-                <input type="radio" />
-                <input type="radio" />
-                <button  className="btn"> create</button>
-        
+            <form onSubmit={submit} className={css.formWrapper}>
+                <input  required value={title} onChange={(e) => setTitle(e.target.value)} type="text" placeholder="title" />
+                <input value={price} onChange={(e) => setPrice(e.target.value)} type="number" placeholder="price" />
+                <input value={img} onChange={(e) => setImg(e.target.value)} type="url" placeholder="Img Link" />
+                <textarea value={description} onChange={(e) => setDescription(e.target.value)} placeholder="description" ></textarea>
+                <label>
+                    <input name="status" value="pizza"  checked={status === "pizza"} type="radio" 
+                    onChange={(e) => setStatus(e.target.value)}/>
+                    <span>Pizza</span>
+                </label>
+                <label>
+                    <input name="status" value="potable" checked={status === "potable"} type="radio"
+                    onChange={(e) => setStatus(e.target.value)} />
+                    <span>Drinks</span>
+                </label>
+
+                <button disabled={isSending} className="btn"> create</button>
             </form>
         </div>
 

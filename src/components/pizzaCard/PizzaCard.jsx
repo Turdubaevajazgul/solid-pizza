@@ -1,8 +1,31 @@
 import css from "./PizzaCard.module.css"
+import { basketActions } from "../../redux/basketSlice"
+import { useDispatch } from "react-redux"
+import Api from "../../api/api"
 
-
-function PizzaCard({ img, title, description, price, addToBasket, id, isAdmin }) {
-    const handle = () => addToBasket({ img, title, description, price, addToBasket, id })
+function PizzaCard({ img, title, description, price, addToBasket, id, isAdmin, link }) {
+    const dispatch = useDispatch()
+    const handleReduxClick = () => {
+        const test = basketActions.addToBasket({ img, title, description, price, addToBasket, id })
+        dispatch(test)
+    }
+    const handleDelete = () => {
+        if (link === "pizza"){
+        Api.deletePizza(id).then(()=>{
+            window.location.reload()
+        })
+        }else{
+          Api.deleteDrink(id).then(()=>{
+            window.location.reload()
+        })
+        // fetch(`${base_url}${link}/${id}`, {
+        //     method: "DELETE"
+        // })
+        //     .then(() => {
+        //         alert("sucsessfully")
+        //         window.location.reload()
+        //     })
+    }
     return (
         <div className={css.wrapper}>
             <div className={css.imageWrapper}>
@@ -22,16 +45,17 @@ function PizzaCard({ img, title, description, price, addToBasket, id, isAdmin })
                 <div className={css.price}>
                     от {price} сом
                 </div>
-                {!isAdmin && <button onClick={handle} className="btn">Выбрать</button>}
+                {!isAdmin && <button onClick={handleReduxClick} className="btn">Выбрать</button>}
 
             </div>
             {isAdmin && (<div>
-                <button className="btn">Удалить </button>
+                <button onClick={handleDelete} className="btn">Удалить </button>
                 <button className="btn">Изменить </button>
             </div>
             )}
         </div>
     )
+}
 }
 
 export default PizzaCard

@@ -1,7 +1,10 @@
 import css from "./BasketModal.module.css"
 import { Link } from "react-router-dom"
+import { useSelector } from "react-redux"
 
 function BasketModal({ opened, OnBasketOpen, basket }) {
+  const test = useSelector((state) => state)
+  console.log(test)
   const getSum = () => {
     const result = basket.reduce((sum, item) => {
       return sum + Number(item.price)
